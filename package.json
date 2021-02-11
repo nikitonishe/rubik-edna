@@ -1,6 +1,6 @@
 {
   "name": "rubik-edna",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "classes/Edna.js",
   "repository": "git@github.com:nikitonishe/rubik-edna.git",
   "author": "nikitandr <ns@indotech.ru>",
