@@ -3,7 +3,6 @@ const isObject = require('lodash/isObject');
 const crypto = require('crypto');
 const fetch = require('node-fetch');
 const set = require('lodash/set');
-const get = require('lodash/get');
 
 const methods = require('./Edna/methods');
 
@@ -73,9 +72,7 @@ class Edna extends Kubik {
     const request = await fetch(url, { method, body, headers });
     const result = await request.json();
 
-    if (result.status !== 'ok') {
-      throw new EdnaError(`${get(result, 'errors.0.code')} ${get(result, 'errors.0.description')}`);
-    }
+    if (result.code !== 'ok') throw new EdnaError(result.code);
 
     return result;
   }

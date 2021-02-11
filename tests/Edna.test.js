@@ -34,14 +34,33 @@ describe('Кубик для работы с Edna', () => {
 
     const response = await kubik.imOutMessage({
       body: {
-        subject: 'test',
+        subject: 'MFMS_TEST3_WA',
         address: dataForTests.address,
         text: 'Тестовое сообщение',
         contentType: 'text'
       }
     });
 
-    expect(response.status).toBe('ok')
+    expect(response.code).toBe('ok');
+
+    await app.down();
+  });
+
+  test('Пробует отправить шаблонное сообщение (не забудьте добавить токен в настройки)', async () => {
+    const { app, kubik } = get();
+    await app.up();
+    const dataForTests = app.config.get('dataForTests');
+
+    const response = await kubik.imOutHSM({
+      body: {
+        subject: 'MFMS_TEST3_WA',
+        address: dataForTests.address,
+        text: 'Тестовое шаблонное сообщение',
+        contentType: 'text'
+      }
+    });
+
+    expect(response.code).toBe('ok');
 
     await app.down();
   });
